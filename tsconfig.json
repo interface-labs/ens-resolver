@@ -4,16 +4,11 @@
     "removeComments": true,
     "sourceMap": true,
     "target": "es6",
-    "rootDir": "src",
-    "outDir": "build",
+    "rootDir": "./src",
+    "outDir": "./build",
     "esModuleInterop": true,
-    "strict": true
-  },
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts"
-  ]
+    "strict": true,
+    "typeRoots": ["./global.d.ts","./node_modules/@types"],
+    "skipLibCheck": true
+  }
 }
