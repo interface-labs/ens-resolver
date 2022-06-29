@@ -9,6 +9,7 @@
     "esModuleInterop": true,
     "strict": true,
     "typeRoots": ["./global.d.ts","./node_modules/@types"],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
   }
 }
