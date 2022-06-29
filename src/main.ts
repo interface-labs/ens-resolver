@@ -26,12 +26,11 @@ export const storeBase64 = async (image?: string): Promise<string | undefined> =
   if (!image) return undefined
 
   const svg = Buffer.from(image.substring(26), 'base64');
-  const png = await sharp(svg).png().toBuffer()
+  const png = await sharp(svg).resize({ width: 420 }).png().toBuffer()
   const imageCID = await storage.storeBlob(new Blob([png]))
 
   return `${process.env.IPFS_GATEWAY}/ipfs/${imageCID}`
 }
-
 
 export const isPunk = (uri?: string): boolean => uri?.toLowerCase().includes(PUNKS_ADRRESS.toLowerCase()) ? true : false
 
@@ -43,7 +42,7 @@ export const storePunk = async (uri?: string): Promise<string | undefined> => {
   if (!punkId) return undefined
   const image = await contract.punkImageSvg(punkId)
   const svg = Buffer.from(image.substring(24), 'utf8');
-  const png = await sharp(svg).png().toBuffer()
+  const png = await sharp(svg).resize({ width: 420 }).png().toBuffer()
   const imageCID = await storage.storeBlob(new Blob([png]))
 
   return `${process.env.IPFS_GATEWAY}/ipfs/${imageCID}`
